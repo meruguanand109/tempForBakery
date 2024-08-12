@@ -1,0 +1,27 @@
+import CartContext from '../../context/CartContext'
+import './index.css'
+
+const CartSummary = () => (
+  <CartContext.Consumer>
+    {value => {
+      const {cartList} = value
+      let itemsPrice = 0
+      for (const each of cartList) {
+        itemsPrice += each.price * each.quantity
+      }
+      console.log(itemsPrice)
+      const itemsCount = cartList.length
+      return (
+        <div className="">
+          <h1 className="">
+            Order Total: <span className="">{itemsPrice}</span>
+          </h1>
+          <p className="">{itemsCount} Items in cart</p>
+          <button className="">Checkout</button>
+        </div>
+      )
+    }}
+  </CartContext.Consumer>
+)
+
+export default CartSummary
